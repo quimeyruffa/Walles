@@ -1,0 +1,18 @@
+{
+    "usuarios":[
+        {
+            "id":1,
+            "apellido":"Perez",
+            "nombre":"Carlos",
+            "username": "cperez",
+            "password":"81dc9bdb52d04dc20036dbd8313ed055"
+        },
+        {
+            "id":2,
+            "apellido":"Garcia",
+            "nombre":"Marta",
+            "username": "mgarcia",
+            "password":"204f40bc8d64d0847234f1b86a230a54"
+        }
+    ]
+}

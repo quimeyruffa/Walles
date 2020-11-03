@@ -1,0 +1,13 @@
+.containerPrincipal{
+    border: 1px solid blue;
+    padding: 40px;
+    background-color: white;
+    margin: 1rem;
+}
+.containerSecundario{
+    text-align: center;
+}
+.container-fluid{
+    background-color: rgba(108, 153, 250, 0.623);
+    
+}
