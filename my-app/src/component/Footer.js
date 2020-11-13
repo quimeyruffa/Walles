@@ -3,7 +3,7 @@ import '../css/Footer.css';
 function Footer() {
     return (
         <React.Fragment>
-            <div className="row">
+            <div className="row fixed-bottom footer">
                 <div className="col-12">
                     <footer className="footer">
                         All rigth reserverd

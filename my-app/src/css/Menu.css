@@ -1,4 +1,8 @@
 .container-fluid{
+    height:100rem;
     background-color: rgba(108, 153, 250, 0.623);
     padding: 1rem;
+}
+.jumbotron{
+    height: 10rem;
 }

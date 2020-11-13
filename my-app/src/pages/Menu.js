@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Cookies from 'universal-cookie';
 import Buscardor from '../component/Buscardor'
 import '../css/Menu.css';
+import { Link } from 'react-router-dom';
 import Resultado from '../component/Resultado'
 
 
@@ -13,14 +14,7 @@ export default class Menu extends Component {
         imagenes: [],
         pagina:''
     }
-    cerrarSesion = () => {
-        cookies.remove('id', { path: '/' });
-        cookies.remove('nombre', { path: '/' });
-        cookies.remove('apellido', { path: '/' });
-        cookies.remove('username', { path: '/' });
-        window.location.href = './';
 
-    }
     scroll = () =>{
         const elemento = document.querySelector(".jumbotron");
         elemento.scrollIntoView('smooth','start');
@@ -81,6 +75,7 @@ export default class Menu extends Component {
         return (
             <div className="app container-fluid">
                 <div className="jumbotron">
+                    <Link to="/profile" className="link"> Profile </Link>
                     <p className="lead text-center col-md-12"> Buscar </p>
                     <Buscardor
                         datosBusqueda={this.datosBusqueda}
@@ -94,8 +89,6 @@ export default class Menu extends Component {
                     />
                 </div>
                 <br />
-            {/* sacar boton con funciones */}
-                <button onClick={() => this.cerrarSesion()}> Cerrar Sesion </button>
             
             </div>
         )

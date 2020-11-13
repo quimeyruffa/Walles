@@ -1,18 +1,62 @@
 {
-    "usuarios":[
-        {
-            "id":1,
-            "apellido":"Perez",
-            "nombre":"Carlos",
-            "username": "cperez",
-            "password":"81dc9bdb52d04dc20036dbd8313ed055"
-        },
-        {
-            "id":2,
-            "apellido":"Garcia",
-            "nombre":"Marta",
-            "username": "mgarcia",
-            "password":"204f40bc8d64d0847234f1b86a230a54"
-        }
-    ]
+  "usuarios": [
+    {
+      "id": 1,
+      "apellido": "Perez",
+      "nombre": "Carlos",
+      "username": "cperez",
+      "password": "12345"
+    },
+    {
+      "id": 2,
+      "apellido": "Garcia",
+      "nombre": "Marta",
+      "username": "mgarcia",
+      "password": "204f40bc8d64d0847234f1b86a230a54"
+    },
+    {
+      "nombre": "quimey",
+      "pass": "kTj8fUB8eQQtX@",
+      "apellido": "ruffa",
+      "email": "quimeyzoe@hotmail.com",
+      "id_estado": "Buenos Aires",
+      "id_provincia": "Buenos Aires",
+      "telefono": "1132591251",
+      "dni": "43037585",
+      "direccion": "Ranchos, Castelar",
+      "ciudad": "Ranchos, Castelar",
+      "id": 3
+    },
+    {
+      "nombre": "quimey",
+      "pass": "kTj8fUB8eQQtX@",
+      "apellido": "ruffa",
+      "email": "quimeyzoe@hotmail.co",
+      "id_estado": "Buenos Aires",
+      "id_provincia": "Buenos Aires",
+      "telefono": "1132591251",
+      "dni": "43037585",
+      "direccion": "Ranchos, Castelar",
+      "ciudad": "Ranchos, Castelar",
+      "id": 4
+    },
+    {
+      "name": "quimey ruffa",
+      "imag": {
+        "name": "estructura.jpg",
+        "size": 406160,
+        "type": "image/jpeg"
+      },
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    }
+  ]
 }
