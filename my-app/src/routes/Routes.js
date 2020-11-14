@@ -7,16 +7,21 @@ import '../css/Routes.css';
 import Profile from '../pages/Profile';
 import Registros from '../pages/Registros';
 import UserProducts from '../pages/UserProducts';
+import prueba from '../pages/prueba';
+import Navbar from '../component/Navbar';
 
 
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <div className="grid-container">
-        <Route exact path="/" component={Login} />
+        
+        <div className="grid-container mt-5" >
+        <Navbar/>
+        <Route exact path="/login" component={Login} />
         <Route exact path="/menu" component={Menu} />
         <Route  path="/profile" component={Profile} />
+        <Route exact path="/" component={prueba} />
         <Route path="/singin" component={Registros} />
         <Route path='/newProduct' component={UserProducts}/>
         <Footer/>

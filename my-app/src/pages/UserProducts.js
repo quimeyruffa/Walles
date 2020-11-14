@@ -10,12 +10,10 @@ export default class UserProducts extends Component {
         }
     }
 
-    handleEvent(){
-    }
     render() {
         return (
             <div>
-                {this.state.form}
+                {this.state.form.nombre}
             </div>
         )
     }

@@ -29,6 +29,7 @@ export default class Menu extends Component {
     consultarApi = () => {
         const pagina = this.state.pagina;
         const url = `https://pixabay.com/api/?key=18969526-82cc74d3f89adf2aebdbe40d4&q=${this.state.termino}&per_page=30&page=${pagina}`
+
         fetch(url)
             .then(respuesta => respuesta.json())
             .then(resultado => this.setState({ imagenes: resultado.hits }))
@@ -76,6 +77,7 @@ export default class Menu extends Component {
             <div className="app container-fluid">
                 <div className="jumbotron">
                     <Link to="/profile" className="link"> Profile </Link>
+        
                     <p className="lead text-center col-md-12"> Buscar </p>
                     <Buscardor
                         datosBusqueda={this.datosBusqueda}

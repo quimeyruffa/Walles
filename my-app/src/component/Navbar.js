@@ -1,17 +1,19 @@
 import React from 'react'
-import '../css/Footer.css';
-function Footer() {
-    return (
-        <React.Fragment>
-            <div className="row fixed-bottom footer">
+
+function Navbar() {
+    
+        return (
+            <React.Fragment>
+            <div className="row fixed-top">
                 <div className="col-12">
                     <footer className="footer">
-                        All rigths reserved
+                        WHALES
                     </footer>
                 </div>
             </div>
 
         </React.Fragment>
-    )
-}
-export default Footer;
+        )
+    }
+
+export default Navbar;
