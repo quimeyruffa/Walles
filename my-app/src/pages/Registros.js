@@ -37,7 +37,7 @@ function Registros() {
 
     return (
         <>
-        <div  style={{textAlign:"center"}} className=" col-4 containerPrincipal offset-4">
+        <div  style={{textAlign:"center", 'margin-top': '10%'}} className=" col-4 containerPrincipal offset-4">
             <header >
                 <form className="form-group" action="/profile" method="post" enctype="multipart/form-data">
                     <div>

@@ -1,98 +1,56 @@
-import React, { Component } from 'react'
-import Cookies from 'universal-cookie';
-import Buscardor from '../component/Buscardor'
-import '../css/Menu.css';
+import React from 'react'
+import { useState } from 'react';
+import SinImagen from './ballenita3.png';
 import { Link } from 'react-router-dom';
-import Resultado from '../component/Resultado'
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Buscardor from '../component/Buscardor';
+function Menu() {
+    const [termino, setTermino] = useState('');
+    const [products, setProduct] = useState([]);
 
-
-const cookies = new Cookies();
-export default class Menu extends Component {
-
-    state = {
-        termino: '',
-        imagenes: [],
-        pagina:''
+    const productos = async (termino) => {
+        setTermino(termino)
+        const url = 'http://whales.matanga.net.ar:8000/productos/' + termino.trim()
+        const res = await fetch(url)
+        const data = await res.json();
+        setProduct(data);
     }
 
-    scroll = () =>{
-        const elemento = document.querySelector(".jumbotron");
-        elemento.scrollIntoView('smooth','start');
-    }
+
+    return (
+        <React.Fragment>
+
+            <Buscardor datosBusqueda={productos} />
+            <div className='row'>
+
+                {products.map(producto => (
+
+                    <div className="col">
+                        <Card style={{ width: '18rem', margin: '2rem' }}>
+                            <Card.Img variant="top" src={!producto.imagen ? SinImagen : "http://whales.matanga.net.ar:8000/" + producto.imagen} />
+                            <Card.Body>
+                                <Card.Title  >{producto.nombre}</Card.Title>
+                                <Card.Text>
+                                    Descripción: {producto.id}
+                                    Categoria:{producto.categoria}
+                                </Card.Text>
+                                <Button variant="primary">Comprar</Button>
+
+                            </Card.Body>
+                        </Card>
+                    </div>
 
 
-    componentDidMount() {
-        if (!cookies.get("username")) {
-            window.location.href = "./";
-        }
-    }
-    consultarApi = () => {
-        const pagina = this.state.pagina;
-        const url = `https://pixabay.com/api/?key=18969526-82cc74d3f89adf2aebdbe40d4&q=${this.state.termino}&per_page=30&page=${pagina}`
+                ))}
 
-        fetch(url)
-            .then(respuesta => respuesta.json())
-            .then(resultado => this.setState({ imagenes: resultado.hits }))
-    }
-
-    datosBusqueda = (termino) => {
-        this.setState({
-            termino: termino,
-            pagina:1
-        }, () => {
-            this.consultarApi();
-        })
-    }
-    paginaAnterior =()=>{
-          //leer estado pagina
-          let pagina = this.state.pagina;    
-
-          if(pagina === 1) return null;
-          //restar
-          pagina-=1;
-          //agregar cambio
-          this.setState({
-              pagina
-          },()=>{
-              this.consultarApi();
-              this.scroll();
-          });
-
-    }
-    paginaSiguiente= () =>{
-        //leer estado pagina
-        let pagina = this.state.pagina;
-        //sumar
-        pagina+=1;
-        //agregar cambio
-        this.setState({
-            pagina
-        },()=>{
-            this.consultarApi();
-            this.scroll();
-        });
-    }
-    render() {
-        return (
-            <div className="app container-fluid">
-                <div className="jumbotron">
-                    <Link to="/profile" className="link"> Profile </Link>
-        
-                    <p className="lead text-center col-md-12"> Buscar </p>
-                    <Buscardor
-                        datosBusqueda={this.datosBusqueda}
-                    />
-                </div>
-                <div className="row justify-content-center">
-                    <Resultado
-                        imagenes={this.state.imagenes}
-                        paginaAnterior={this.paginaAnterior}
-                        paginaSiguiente={this.paginaSiguiente}
-                    />
-                </div>
-                <br />
-            
             </div>
-        )
-    }
+
+        </React.Fragment>
+    )
+
+
+
+
 }
+export default Menu;

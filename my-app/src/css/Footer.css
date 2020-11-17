@@ -2,7 +2,22 @@
     background-color: #1259a0;
     color:white;
     display:flex;
-    justify-content: center;
+    font-size: 30px;
+    justify-content: left;
     align-items: center;
   
   }
+
+.footer_2{
+  background-color: #1259a0;
+  color:white;
+  display:flex;
+  font-size: 60%;
+  justify-content: center;
+  align-items: center;
+  }
+
+.link{
+  margin-left:70%;
+  font-size: 65%;
+}

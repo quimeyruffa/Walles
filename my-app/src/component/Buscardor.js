@@ -12,6 +12,7 @@ class Buscardor extends Component {
 
         //tomamos el valor del input y lo enviamos al componente principal 
         const termino = this.busquedaRef.current.value;
+        console.log(termino)
         this.props.datosBusqueda(termino);
     }
     render() {
@@ -19,7 +20,7 @@ class Buscardor extends Component {
 
         return (
             <form onSubmit={this.obtenerDatos}>
-                <div className="row">
+                <div className="row" style={{'margin-top': '3%'}}>
                    
                     <div className="form-group col-md-8">
                         <input ref={this.busquedaRef} type="text" className="form-control 

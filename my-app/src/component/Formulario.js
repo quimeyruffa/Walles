@@ -1,16 +1,39 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+
 
 export default class Formulario extends Component {
 
     state={
         form:{
-            username:'',
-            password:''
+            email:'',
+            password:'',
+            store:null
         }
     }
+
+    componentDidMount()
+    {
+        this.storeCollector()
+    }
+
+    storeCollector()
+    {
+        let store = JSON.parse(localStorage.getItem('login'));
+        if(store)
+        {
+            this.setState({
+                form:{
+                    ...this.state.form,
+                    store:store
+                }
+            })
+            console.log(this.state.form.store)
+        }
+    }
+
     handleClick =(e)=>{
         const { iniciarSesion} = this.props;
+        this.storeCollector()
         iniciarSesion(this.state.form)
     }
     handleChange=async e=>{
@@ -20,24 +43,23 @@ export default class Formulario extends Component {
                 [e.target.name]: e.target.value
             }
         });
-        console.log(this.state.form)
     }
     
     render() {
         
         return (
-            <div style={{height:'20%'}} className="containerPrincipal offset-4 col-4">
+            <div style={{height:'20%', 'margin-top': '10%'}} className="containerPrincipal offset-4 col-4">
 
                 <div className="containerSecundario ">
                     <div className="form-group">
                         <label>
-                            Usuario:
+                            Email:
             </label>
                         <br />
                         <input
-                            type="text"
+                            type="email"
                             className="form-control"
-                            name="username"
+                            name="email"
                             onChange={this.handleChange}
                         />
                         <br />
@@ -51,7 +73,7 @@ export default class Formulario extends Component {
                         />
                         <br />
                         <button className="btn btn-primary" onClick={this.handleClick}> Iniciar Sesion </button>
-                        <Link to="/singin" className="link"> registrate </Link>
+                      
                     </div>
                 </div>
             </div>
