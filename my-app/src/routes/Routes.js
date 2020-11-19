@@ -4,6 +4,7 @@ import Footer from '../component/Footer';
 import Login from '../pages/Login'
 import '../css/Routes.css';
 import Profile from '../pages/Profile';
+import DesItem from '../pages/DesItem';
 import Registros from '../pages/Registros';
 import UserProducts from '../pages/UserProducts';
 import Navbar from '../component/Navbar';
@@ -18,8 +19,8 @@ function Routes() {
         <div className="grid-container mt-5" >
         <Navbar/>
         <Route exact path="/login" component={Login} />
-        {/* <Route exact path="/menu" component={Menu} /> */}
         <Route  path="/profile" component={Profile} />
+        <Route path="/product" component={DesItem}/>
         <Route exact path="/" component={Menu} />
         <Route path="/singin" component={Registros} />
         <Route path='/newProduct' component={UserProducts}/>

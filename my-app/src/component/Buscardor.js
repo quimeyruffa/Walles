@@ -4,13 +4,13 @@ class Buscardor extends Component {
 
    
 
-     /* leer valor input*/
+
     busquedaRef= React.createRef();
 
     obtenerDatos = (e) =>{
         e.preventDefault();
 
-        //tomamos el valor del input y lo enviamos al componente principal 
+       
         const termino = this.busquedaRef.current.value;
         console.log(termino)
         this.props.datosBusqueda(termino);

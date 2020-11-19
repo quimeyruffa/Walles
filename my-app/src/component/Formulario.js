@@ -3,58 +3,39 @@ import React, { Component } from 'react'
 
 export default class Formulario extends Component {
 
-    state={
-        form:{
-            email:'',
-            password:'',
-            store:null
+    constructor() {
+        super();
+        this.state = {
+            form: {
+                email: '',
+                password: ''
+            }
         }
     }
 
-    componentDidMount()
-    {
-        this.storeCollector()
-    }
-
-    storeCollector()
-    {
-        let store = JSON.parse(localStorage.getItem('login'));
-        if(store)
-        {
-            this.setState({
-                form:{
-                    ...this.state.form,
-                    store:store
-                }
-            })
-            console.log(this.state.form.store)
-        }
-    }
-
-    handleClick =(e)=>{
-        const { iniciarSesion} = this.props;
-        this.storeCollector()
+    handleClick = (e) => {
+        const { iniciarSesion } = this.props;
         iniciarSesion(this.state.form)
     }
-    handleChange=async e=>{
-       await this.setState({
-            form:{
+    handleChange = async e => {
+        await this.setState({
+            form: {
                 ...this.state.form,
                 [e.target.name]: e.target.value
             }
         });
     }
-    
+
     render() {
-        
+
         return (
-            <div style={{height:'20%', 'margin-top': '10%'}} className="containerPrincipal offset-4 col-4">
+            <div style={{ height: '20%', 'margin-top': '10%' }} className="containerPrincipal offset-4 col-4">
 
                 <div className="containerSecundario ">
                     <div className="form-group">
                         <label>
                             Email:
-            </label>
+                        </label>
                         <br />
                         <input
                             type="email"
@@ -73,7 +54,7 @@ export default class Formulario extends Component {
                         />
                         <br />
                         <button className="btn btn-primary" onClick={this.handleClick}> Iniciar Sesion </button>
-                      
+
                     </div>
                 </div>
             </div>

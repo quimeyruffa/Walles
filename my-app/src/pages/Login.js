@@ -6,27 +6,44 @@ import Formulario from '../component/Formulario';
 const baseUrl = "http://whales.matanga.net.ar:8000/usuarios/login";
 // const cookies = new Cookies();
 class Login extends Component {
-
+    constructor(){
+        super();
+        this.state={
+            token:null
+        }
+    }
 
     iniciarSesion = async (form) => {
-        console.log('hola', form.email);
 
         var data = { email: form.email, password: form.password };
-        
+        console.log('data', data)
         fetch(baseUrl, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'x-access-token': 'application/json'
+                'Content-Type': 'application/json'
             }
         }).then(res => 
             res.json().then((result)=>{
                 console.warn("result", result);
-                localStorage.setItem('login', JSON.stringify({
-                    token: result.token
-                }))
+                localStorage.setItem('token', result.token)
+                this.setState({
+                    token:result.token
+                })
+                this.Ingreso()
             }));
            
+    }
+    
+
+
+    Ingreso(){
+        if(this.state.token != null ){
+            window.location.href = "./";
+        }
+        else{
+            alert('El usuario es incorrecto')
+        }
     }
 
 
