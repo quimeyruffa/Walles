@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import FormData from 'form-data';
 import Axios from 'axios';
 import '../css/Login.css';
-const baseUrl = "http://whales.matanga.net.ar:8000/usuarios";
+const baseUrl = "http://whales.matanga.net.ar:8000/usuarios/registro";
 function Registros() {
     const [nombre, setName]=useState()
     const [imagen, setFile] = useState();
@@ -15,7 +15,7 @@ function Registros() {
     const [dni, setDni] = useState();
     const [direccion, setDireccion] = useState();
     const [ciudad, setCiudad] = useState();
-    const send = event => {
+    const send = async () => {
         const data = new FormData();
         data.append("nombre", nombre)
         data.append("imagen", imagen);
@@ -29,19 +29,24 @@ function Registros() {
         data.append("direccion", direccion);
         data.append("ciudad", ciudad);
 
-        Axios
+       await  Axios
             .post(baseUrl, data)
             .then(res => console.log(res))
             .catch(err => console.log(err))
+        
+        turnValidate();
     }
-
+    const turnValidate = ()=> {
+        window.location.href = "./validate";
+    }
     return (
         <>
-        <div  style={{textAlign:"center", 'margin-top': '10%'}} className=" col-4 containerPrincipal offset-4">
+        <div  style={{textAlign:"center", 'margin-top': '5%', 'margin-bottom': '5%'}} className=" col-4 containerPrincipal offset-4">
             <header >
                 <form className="form-group" action="/profile" method="post" enctype="multipart/form-data">
                     <div>
-                        <label htmlFor="apellido">Apellido</label>
+                        <label  className="label" htmlFor="apellido">Apellido: </label>
+                        <br></br>
                         <input
                             type="text"
                             name='recfile'
@@ -51,8 +56,10 @@ function Registros() {
                                 setApellido(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="file">File</label>
+                        <label className="label" htmlFor="file">File: </label>
+                        <br></br>
                         <input
                             type="file"
                             name='recfile'
@@ -63,8 +70,10 @@ function Registros() {
                                 setFile(imagen);
                             }} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="ciudad">Ciudad</label>
+                        <label  className="label" htmlFor="ciudad">Ciudad: </label>
+                            <br/>
                         <input
                             type="text"
                             name='recfile'
@@ -74,8 +83,10 @@ function Registros() {
                                 setCiudad(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="direccion">Direccion</label>
+                        <label className="label" htmlFor="direccion">Direccion: </label>
+                        <br/>
                         <input
                             type="text"
                             name='recfile'
@@ -85,8 +96,10 @@ function Registros() {
                                 setDireccion(value);
                             })} />
                     </div>
+                            <br/>
                     <div>
-                        <label htmlFor="dni">DNI</label>
+                        <label className="label" htmlFor="dni">DNI: </label>
+                        <br/>
                         <input
                             type="text"
                             name='recfile'
@@ -96,8 +109,10 @@ function Registros() {
                                 setDni(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="email">email</label>
+                        <label className="label" htmlFor="email">Email:</label>
+                        <br/>
                         <input
                             type="text"
                             name='recfile'
@@ -107,8 +122,10 @@ function Registros() {
                                 setEmail(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="id_estado">Estado</label>
+                        <label className="label" htmlFor="id_estado">Estado:</label>
+                        <br/>
                         <input
                             type="number"
                             name='recfile'
@@ -118,8 +135,10 @@ function Registros() {
                                 setEstado(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="id_provincia">Provincia</label>
+                        <label className="label" htmlFor="id_provincia">Provincia:</label>
+                        <br/>
                         <input
                             type="number"
                             name='recfile'
@@ -129,8 +148,10 @@ function Registros() {
                                 setProvincia(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="nombre">Nombre</label>
+                        <label className="label" htmlFor="nombre">Nombre:</label>
+                        <br/>
                         <input
                             type="text"
                             name='recfile'
@@ -140,8 +161,10 @@ function Registros() {
                                 setName(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="pass">Password</label>
+                        <label className="label" htmlFor="pass">Contraseña: </label>
+                        <br/>
                         <input
                             type="password"
                             name='recfile'
@@ -151,8 +174,10 @@ function Registros() {
                                 setPass(value);
                             })} />
                     </div>
+                        <br/>
                     <div>
-                        <label htmlFor="apellido">Telefono</label>
+                        <label className="label"  htmlFor="apellido">Teléfono: </label>
+                        <br/>
                         <input
                             type="text"
                             name='recfile'
@@ -163,7 +188,7 @@ function Registros() {
                             })} />
                     </div>
                 </form>
-                <button onClick={send}>Send</button>
+                <button style={{  width: '40%'}} className='btn btn-secondary'onClick={send}>Send</button>
             </header>
         </div>
         </>

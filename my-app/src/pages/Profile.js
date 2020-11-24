@@ -16,10 +16,10 @@ class Profile extends Component {
             pass: '',
             dni: 0,
             id_estado: 0,
-            imagen: '',
+            imagenUsuario: '',
             codigo: '',
-            codigo_validez: ''
-
+            codigo_validez: '',
+            productos:[]
         }
     }
 
@@ -49,10 +49,25 @@ class Profile extends Component {
                     pass: result.data[0].pass,
                     dni: result.data[0].dni,
                     id_estado: result.data[0].id_estado,
-                    imagen: result.data[0].imagen,
+                    imagenUsuario: result.data[0].imagenUsuario,
                     codigo: result.data[0].codigo,
                     codigo_validez: result.data[0].codigo_validez
                 })
+                result.data.map(data => {
+                         let productos = {
+                            
+                                desProductos: data.descripcionProducto,
+                                nombreProducto: data.nombreProducto,
+                                imagenProducto: data.imagenProducto,
+                                precio: data.precio,
+                                cantidad: data.cantidad                                
+                            
+                        }
+                        this.state.productos.push(productos);
+                        
+                    })
+                console.log(result)
+                console.log(this.state.productos)
             }));
 
     }
@@ -60,26 +75,27 @@ class Profile extends Component {
 
  
 
-    // AGREGAR NUEVO PRODUCTO
-    // const agregarProducto = () =>{
-    //     window.location.href = './newProduct';
-    // }
+    
+    MisCompras= () =>{
+        window.location.href = './miscompras';
+    }
 
 
     render() {
-
+        const url = 'http://whales.matanga.net.ar:8000/'+ this.state.imagenUsuario
+        console.log(url)
         return (<>
             <div className='row'>
                 <div className='col-12'>
                     <div className=' col-4 card' style={{ float: 'left', 'margin-top':'1rem','margin-left':'1rem', 'text-aling': 'center', 'background-color': 'lightgray' }}>
                         <div className='row'>
-                            <div className='col-12'>
-                                <img alt='user' src={this.state.imagen} />
+                            <div  style={{'text-aling': 'center'}} className='col-12'>
+                                <img style={{width:'50%', height:'70%', 'border-radius':'20%', margin:'2rem'}} alt='user' src={url} />
                                 <br></br>
                                 <b>{this.state.nombre}   {this.state.apellido}</b>
                                 <p> {this.state.direccion}</p>
 
-                                <button style={{ 'border-radius': '30px', margin: '1rem' }} className='btn-primary'>Message</button>
+                                <button onClick={this.MisCompras} style={{ 'border-radius': '30px', margin: '1rem' }} className='btn-primary'>Mis Compras</button>
 
                             </div>
                         </div>

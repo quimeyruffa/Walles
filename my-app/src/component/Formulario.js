@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 
+
 export default class Formulario extends Component {
 
     constructor() {
@@ -8,9 +9,26 @@ export default class Formulario extends Component {
         this.state = {
             form: {
                 email: '',
-                password: ''
-            }
+                password: '',
+                codigo:''
+            },
+            showResgistro:true,
+            showButton:false
         }
+    }
+    componentWillMount(){
+        const {registro} = this.props;
+        if (registro){
+            this.setState({
+                showResgistro:false,
+                showButton:true
+            })
+        }
+    }
+
+    handleClick2 = (e) => {
+        const { validacion} = this.props;
+        validacion(this.state.form)
     }
 
     handleClick = (e) => {
@@ -25,6 +43,9 @@ export default class Formulario extends Component {
             }
         });
     }
+    handleMove() {
+        window.location.href = "./singin";
+    }
 
     render() {
 
@@ -33,6 +54,7 @@ export default class Formulario extends Component {
 
                 <div className="containerSecundario ">
                     <div className="form-group">
+
                         <label>
                             Email:
                         </label>
@@ -53,11 +75,26 @@ export default class Formulario extends Component {
                             onChange={this.handleChange}
                         />
                         <br />
-                        <button className="btn btn-primary" onClick={this.handleClick}> Iniciar Sesion </button>
+                        <label style={{ display: this.state.showButton ? 'show' : 'none'}}> Código: </label>
+                        <br  />
+                        <input
+                            style={{ display: this.state.showButton ? 'show' : 'none'}}
+                            type="codigo"
+                            className="form-control"
+                            name="codigo"
+                            onChange={this.handleChange}
+                        />
+                        <br />
 
                     </div>
+                    <button style={{ display: this.state.showButton ? 'show' : 'none', 'margin': '8px', width: '40%' }} className="btn btn-secondary" onClick={this.handleClick2}> Iniciar Sesion </button>
+                    <button style={{ display: this.state.showResgistro ? 'show' : 'none', 'margin': '8px', width: '40%' }} className="btn btn-secondary" onClick={this.handleClick}> Iniciar Sesion </button>
+                    <br />
+                    <button style={{display: this.state.showResgistro ? 'show' : 'none', width: '40%' }} className="btn btn-secondary" onClick={this.handleMove}> Registrate </button>
                 </div>
+
             </div>
+
         )
     }
 }

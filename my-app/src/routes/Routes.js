@@ -9,7 +9,8 @@ import Registros from '../pages/Registros';
 import UserProducts from '../pages/UserProducts';
 import Navbar from '../component/Navbar';
 import Menu from '../pages/Menu';
-
+import Validacion from '../pages/Validacion';
+import MisCompras from '../pages/MisCompras';
 
 function Routes() {
   return (
@@ -19,6 +20,8 @@ function Routes() {
         <div className="grid-container mt-5" >
         <Navbar/>
         <Route exact path="/login" component={Login} />
+        <Route path="/miscompras" component={MisCompras}/>
+        <Route path="/validate" component={Validacion}/>
         <Route  path="/profile" component={Profile} />
         <Route path="/product" component={DesItem}/>
         <Route exact path="/" component={Menu} />

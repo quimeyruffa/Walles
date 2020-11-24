@@ -1,13 +1,24 @@
 .containerPrincipal{
-    border: 1px solid blue;
+    border: 3px solid rgb(218, 218, 218);
     padding: 40px;
     background-color: white;
     margin: 1rem;
+    border-radius: 3%;
 }
 .containerSecundario{
     text-align: center;
+  
 }
 .container-fluid{
-    background-color: rgba(108, 153, 250, 0.623);
+    background-color: rgba(1, 6, 17, 0.623);
     
+}
+
+.label{
+    color:rgb(116, 116, 116);
+    font-style: italic;
+    font-weight: 500;
+}
+.form-group{
+    margin-bottom: 6rem;
 }

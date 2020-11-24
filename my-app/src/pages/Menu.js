@@ -12,7 +12,8 @@ class Menu extends Component {
         super();
         this.state = {
             termino: '',
-            products: []
+            products: [],
+            id_producto:null
         }
     }
     baseUrl = "http://whales.matanga.net.ar:8000/usuarios/login";
@@ -33,8 +34,13 @@ class Menu extends Component {
         })
     }
     
-    DesProduct(){
-        window.location.href = "./product";
+    DesProduct= async (e)=>{
+        let id = e.target.id
+        await this.setState({
+            id_producto:id
+        })
+         console.log(this.state.id_producto)
+         localStorage.setItem('id_producto', id)
     }
 
     render() {
@@ -43,18 +49,19 @@ class Menu extends Component {
 
                 <Buscardor datosBusqueda={this.productos} />
                 <div className='row'>
-                    {this.state.products.map(producto => (
+                    { this.state.products.map(producto => (
 
-                        <div className="col">
+                        <div className="col" >
                             <Card style={{ width: '18rem', margin: '2rem' }}>
                                 <Card.Img variant="top" src={!producto.imagen ? SinImagen : "http://whales.matanga.net.ar:8000/" + producto.imagen} />
                                 <Card.Body>
                                     <Card.Title  >{producto.nombre}</Card.Title>
                                     <Card.Text>
-                                        Descripción: {producto.id}
-                                        Categoria:{producto.categoria}
+                                        Descripción: {producto.descripcion} <br/>
+                                        Categoria:{producto.categoria} <br/>
+                                        Precio: ${producto.precio}
                                     </Card.Text>
-                                    <Button onClick={this.DesProduct} variant="primary">Comprar</Button>
+                                    <Button id={producto.id_producto} onClick={this.DesProduct} variant="primary">Comprar</Button>
 
                                 </Card.Body>
                             </Card>
@@ -62,7 +69,7 @@ class Menu extends Component {
 
 
                     ))}
-
+                        
                 </div>
 
             </React.Fragment>
