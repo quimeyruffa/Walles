@@ -13,15 +13,22 @@ export default class Formulario extends Component {
                 codigo:''
             },
             showResgistro:true,
-            showButton:false
+            showButton:false,
+            showCodigo:false
         }
     }
     componentWillMount(){
-        const {registro} = this.props;
+        const {registro, validar} = this.props;
         if (registro){
             this.setState({
                 showResgistro:false,
                 showButton:true
+            })
+        }
+        if(validar){
+            this.setState({
+                showCodigo:true,
+                showResgistro:false
             })
         }
     }
@@ -36,7 +43,7 @@ export default class Formulario extends Component {
         iniciarSesion(this.state.form)
     }
     handleChange = async e => {
-        await this.setState({
+        this.setState({
             form: {
                 ...this.state.form,
                 [e.target.name]: e.target.value
@@ -75,10 +82,10 @@ export default class Formulario extends Component {
                             onChange={this.handleChange}
                         />
                         <br />
-                        <label style={{ display: this.state.showButton ? 'show' : 'none'}}> Código: </label>
+                        <label style={{ display: this.state.showCodigo ? 'show' : 'none'}}> Código: </label>
                         <br  />
                         <input
-                            style={{ display: this.state.showButton ? 'show' : 'none'}}
+                            style={{ display: this.state.showCodigo ? 'show' : 'none'}}
                             type="codigo"
                             className="form-control"
                             name="codigo"
@@ -87,10 +94,10 @@ export default class Formulario extends Component {
                         <br />
 
                     </div>
-                    <button style={{ display: this.state.showButton ? 'show' : 'none', 'margin': '8px', width: '40%' }} className="btn btn-secondary" onClick={this.handleClick2}> Iniciar Sesion </button>
+                    <button style={{ display: this.state.showCodigo ? 'show' : 'none', 'margin': '8px', width: '40%' }} className="btn btn-secondary" onClick={this.handleClick2}> Iniciar Sesion </button>
                     <button style={{ display: this.state.showResgistro ? 'show' : 'none', 'margin': '8px', width: '40%' }} className="btn btn-secondary" onClick={this.handleClick}> Iniciar Sesion </button>
                     <br />
-                    <button style={{display: this.state.showResgistro ? 'show' : 'none', width: '40%' }} className="btn btn-secondary" onClick={this.handleMove}> Registrate </button>
+                    <button style={{display: this.state.showButton ? 'show' : 'none', width: '40%' }} className="btn btn-secondary" onClick={this.handleMove}> Registrate </button>
                 </div>
 
             </div>

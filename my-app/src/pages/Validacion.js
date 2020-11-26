@@ -19,20 +19,14 @@ export default class Validacion extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        }).then(res => 
-            res.json().then((result)=>{
-                console.warn("result", result);
-                localStorage.setItem('token', result.token)
-                this.setState({
-                    token:result.token
-                })
-            }));
+        })
+        
         window.location.href = '/login'
     };
     render() {
         return (
             <div>
-                <Formulario registro={true} validacion={this.validacion}/>
+                <Formulario validar={true} registro={false} validacion={this.validacion}/>
             </div>
         )
     }

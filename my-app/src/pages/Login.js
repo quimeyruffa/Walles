@@ -17,7 +17,7 @@ class Login extends Component {
 
         var data = { email: form.email, password: form.password };
         console.log('data', data)
-        fetch(baseUrl, {
+       await fetch(baseUrl, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {

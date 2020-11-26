@@ -18,7 +18,18 @@ class Menu extends Component {
     }
     baseUrl = "http://whales.matanga.net.ar:8000/usuarios/login";
 
-   
+    componentDidMount = async () => {
+        
+        const url = 'http://whales.matanga.net.ar:8000/productos/' 
+        console.log(url)
+        const res = await fetch(url)
+        const data = await res.json();
+        console.log(data)
+        this.setState({
+            products: data
+        })
+    }
+
     productos = async (termino) => {
         this.setState({
             termino: termino
@@ -36,11 +47,13 @@ class Menu extends Component {
     
     DesProduct= async (e)=>{
         let id = e.target.id
-        await this.setState({
+
+        this.setState({
             id_producto:id
         })
-         console.log(this.state.id_producto)
-         localStorage.setItem('id_producto', id)
+       console.log(this.state.id_producto)
+       localStorage.setItem('id_producto', id)
+       window.location.href ='./product'
     }
 
     render() {
@@ -58,7 +71,7 @@ class Menu extends Component {
                                     <Card.Title  >{producto.nombre}</Card.Title>
                                     <Card.Text>
                                         Descripción: {producto.descripcion} <br/>
-                                        Categoria:{producto.categoria} <br/>
+                                   
                                         Precio: ${producto.precio}
                                     </Card.Text>
                                     <Button id={producto.id_producto} onClick={this.DesProduct} variant="primary">Comprar</Button>

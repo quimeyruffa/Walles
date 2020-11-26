@@ -24,10 +24,10 @@ export default class MisCompras extends Component {
                 'x-access-token': token
             }
         }).then(res =>
-            res.json().then((result) => {
+            res.json().then(async (result) => {
                 console.log(result)
 
-               let productArray =  result.data.map(elem => {
+             let productArray =  await result.data.map(elem => {
                     let producto = {
 
                         Producto: elem.Producto,
@@ -39,26 +39,29 @@ export default class MisCompras extends Component {
 
                     }
                     return producto;
-
+                    
                 })
-                this.setState({
+                 this.setState({
                     productos: productArray
-                })
-            }
+                    })
+                }
             ))
-    }
+        }
 
 
     render() {
+        
         return (
             
             <div className='row'>
-                
+                <div className='offset-6 col-6'>
+                    <b style={{'font-size':'2rem'}}> Mis compras</b>
+                </div>
                 {this.state.productos && this.state.productos.map(producto => (
 
                     <div className="col">
-                        <Card style={{ width: '18rem', margin: '2rem' }}>
-                            <Card.Img variant="top" src={producto.imagenProducto ? SinImagen : "http://whales.matanga.net.ar:8000/" + producto.imagenProducto} />
+                        <Card style={{ width: '18rem', margin: '1rem' }}>
+                            <Card.Img variant="top" src={! producto.imagenProducto ? SinImagen: 'http://whales.matanga.net.ar:8000/'+ producto.imagenProducto} />
                             <Card.Body>
                                 <Card.Title  >{producto.Producto}</Card.Title>
                                 <Card.Text>

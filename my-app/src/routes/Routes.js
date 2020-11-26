@@ -12,6 +12,7 @@ import Menu from '../pages/Menu';
 import Validacion from '../pages/Validacion';
 import MisCompras from '../pages/MisCompras';
 
+
 function Routes() {
   return (
     <BrowserRouter>
@@ -19,6 +20,7 @@ function Routes() {
         
         <div className="grid-container mt-5" >
         <Navbar/>
+   
         <Route exact path="/login" component={Login} />
         <Route path="/miscompras" component={MisCompras}/>
         <Route path="/validate" component={Validacion}/>
