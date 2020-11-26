@@ -33,6 +33,7 @@ const Profile = () => {
                 console.log(result.info_usuario[0].imagen)
                 let img = result.info_usuario[0].imagen
                 let info = result.info_usuario[0]
+                
                 setUser(
                     {
                         id_usuario: info.id_usuario,
@@ -46,11 +47,13 @@ const Profile = () => {
                         pass: info.pass,
                         provincia: info.provincia,
                         telefono: info.telefono
+                        
                     })
 
             })
 
         )
+        localStorage.setItem('id_usuario',user.id_usuario )
 
     }, [])
 
@@ -64,7 +67,12 @@ const Profile = () => {
         window.location.href = './miscompras';
     }
 
-
+    const ProductoNuevo = () => {
+        window.location.href = './agregarProducto';
+    }
+    const MisProductos = () => {
+        window.location.href = './misProducto';
+    }
 
     const url = 'http://whales.matanga.net.ar:8000/' + user.imagen
     console.log(url)
@@ -79,8 +87,9 @@ const Profile = () => {
                             <b>{user.nombre}   {user.apellido}</b>
                             <p> {user.direccion}</p>
 
-                            <button onClick={MisCompras} style={{ 'border-radius': '30px', margin: '1rem' }} className='btn-primary'>Mis Compras</button>
-
+                            <button onClick={MisCompras} style={{ 'border-radius': '15px', margin: '1rem' }} className='btn-primary'>Mis Compras</button>
+                            <button onClick={MisProductos} style={{ 'border-radius': '15px', margin: '1rem' }} className='btn-primary'>Mis Productos</button>
+                            <button onClick={ProductoNuevo} style={{ 'border-radius': '15px', margin: '1rem' }} className='btn-primary'>Agregar Producto</button>
                         </div>
                     </div>
                 </div>

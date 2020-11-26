@@ -11,6 +11,7 @@ import Navbar from '../component/Navbar';
 import Menu from '../pages/Menu';
 import Validacion from '../pages/Validacion';
 import MisCompras from '../pages/MisCompras';
+import CargarProducto from '../pages/CargarProducto';
 
 
 function Routes() {
@@ -20,7 +21,7 @@ function Routes() {
         
         <div className="grid-container mt-5" >
         <Navbar/>
-   
+        <Route path='/misProductos' component={UserProducts} />
         <Route exact path="/login" component={Login} />
         <Route path="/miscompras" component={MisCompras}/>
         <Route path="/validate" component={Validacion}/>
@@ -29,6 +30,7 @@ function Routes() {
         <Route exact path="/" component={Menu} />
         <Route path="/singin" component={Registros} />
         <Route path='/newProduct' component={UserProducts}/>
+        <Route path='/agregarProducto' component={CargarProducto}/>
         <Footer/>
         </div>
       </Switch>

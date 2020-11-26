@@ -6,7 +6,7 @@ export default class DesItem extends Component {
     constructor() {
         super();
         this.state = {
-            id_producto: null,
+            id_producto: 0,
             products: [],
             id_usuario: null,
             user: []
@@ -33,7 +33,7 @@ export default class DesItem extends Component {
         this.setState({
             products: data[i]
         })
-        console.log(this.state.products)
+        
         this.getUsuario();
 
     }
@@ -48,6 +48,9 @@ export default class DesItem extends Component {
             const element = data[index];
             if (element.id_usuario == id) {
                 i = index
+                this.setState({
+                    id_usuario: element.id_usuario
+                })
             }
         }
 
@@ -92,7 +95,7 @@ export default class DesItem extends Component {
 
 
                 </div>
-                <DatosCompra style={{ display: 'none' }} precio={this.state.products.precio} />
+                <DatosCompra style={{ display: 'none' }} id_producto={this.state.id_producto} id_vendedor={this.state.id_usuario} precio={this.state.products.precio} />
             </div>
         )
     }

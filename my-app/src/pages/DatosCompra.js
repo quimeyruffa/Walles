@@ -2,50 +2,104 @@ import React, { Component } from 'react'
 
 
 export default class DatosCompra extends Component {
+    
     constructor(props) {
         super(props);
         this.state = {
             email: '',
             password: '',
             cantidad: '',
-            token: this.token
+            token: this.token,
+            data:{
+            precio: props.precio,
+            id_vendedor: props.id_vendedor,
+            id_producto:props.id_producto}
         }
+       
 
     }
-    baseUrl = 'http://whales.matanga.net.ar:8000/productos/comprar'
     token = localStorage.getItem('token');
-    realizarCompra = async () => {
-        const { precio } = this.props
-        let total = this.state.cantidad * precio;
-        var data = { email: this.state.email, password: this.state.password, total: total };
-        console.log('data', data)
-        await fetch(this.baseUrl, {
+    
+    componentDidMount(){
+        
+        fetch('http://whales.matanga.net.ar:8000/productos/comprar', {
             method: 'POST',
-            body: JSON.stringify(data),
+            body:{
+                importe: parseInt(this.props.precio,10),
+                id_vendedor:parseInt( this.props.id_vendedor,10)},
+                // id_producto:this.props.id_producto},
             headers: {
+                'Content-type' : 'application/json',
                 'x-access-token': this.state.token
             }
+        }).then((response)=>{
+            let estado= response.status;
+            if(estado===201){
+                console.log(response)
+            }
+            
+        }).catch((error)=>{
+            console.log(error)
         })
 
     }
+    
+    baseUrl = 'http://whales.matanga.net.ar:8000/productos/comprar'
+    
+    realizarCompra =  () => {
+       
+        
+        // const data = {
+        //     precio: this.props.precio,
+        //     id_vendedor: this.props.id_vendedor,
+        //     id_producto:this.props.id_producto
+        // }
+        // console.log(data)
+        console.log(this.state.data.precio)
+
+        fetch(this.baseUrl, {
+            method: 'POST',
+            body:{
+                importe: parseInt(this.props.precio,10),
+                id_vendedor:parseInt( this.props.id_vendedor,10)},
+                // id_producto:this.props.id_producto},
+            headers: {
+                'Content-type' : 'application/json',
+                'x-access-token': this.state.token
+            }
+        }).then((response)=>{
+            let estado= response.status;
+            if(estado===201){
+                console.log(response)
+            }
+            
+        }).catch((error)=>{
+            console.log(error)
+        })
+
+    };
+
     handleChange3 = (event) => {
         const { value } = event.target;
         this.setState({
-            cantidad: parseInt(value, 10)
+            cantidad: parseInt(value,10)
         })
     };
+
     handleChange2 = (event) => {
         const { value } = event.target;
         this.setState({
             password: { value }
         })
     };
+
     handleChange1 = (event) => {
         const { value } = event.target;
         this.setState({
             email: { value }
         })
     };
+
     render() {
         console.log(this.precio);
         return (

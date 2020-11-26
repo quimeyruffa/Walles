@@ -17,7 +17,7 @@ function Registros() {
     const [ciudad, setCiudad] = useState();
     const send = async () => {
         const data = new FormData();
-        data.append("nombre", nombre)
+        data.append("nombre", nombre);
         data.append("imagen", imagen);
         data.append("pass", pass);
         data.append("apellido", apellido);
