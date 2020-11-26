@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Footer from '../component/Footer';
 import Login from '../pages/Login'
 import '../css/Routes.css';
-import Profile from '../pages/Profile';
+import Profile1 from '../pages/Profile1';
 import DesItem from '../pages/DesItem';
 import Registros from '../pages/Registros';
 import UserProducts from '../pages/UserProducts';
@@ -24,7 +24,7 @@ function Routes() {
         <Route exact path="/login" component={Login} />
         <Route path="/miscompras" component={MisCompras}/>
         <Route path="/validate" component={Validacion}/>
-        <Route  path="/profile" component={Profile} />
+        <Route  path="/profile" component={Profile1} />
         <Route path="/product" component={DesItem}/>
         <Route exact path="/" component={Menu} />
         <Route path="/singin" component={Registros} />
